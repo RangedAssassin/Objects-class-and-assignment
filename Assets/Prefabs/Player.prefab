@@ -79,5 +79,73 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3449712112800100915, guid: 73f5494c365990e489304eb47314ac58, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3173765013490779461}
+    - targetCorrespondingSourceObject: {fileID: 3449712112800100915, guid: 73f5494c365990e489304eb47314ac58, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4133236036811168163}
+    - targetCorrespondingSourceObject: {fileID: 3449712112800100915, guid: 73f5494c365990e489304eb47314ac58, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2690356794819472578}
   m_SourcePrefab: {fileID: 100100000, guid: 73f5494c365990e489304eb47314ac58, type: 3}
+--- !u!1 &6942797937593134201 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3449712112800100915, guid: 73f5494c365990e489304eb47314ac58, type: 3}
+  m_PrefabInstance: {fileID: 5730288549094383178}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3173765013490779461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6942797937593134201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78557d86c0140e44a891cd09bcec37dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myRigidbody: {fileID: 2690356794819472578}
+  movementSpeed: 10
+--- !u!114 &4133236036811168163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6942797937593134201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61bafe03f2e7cb244a310dbb2363bd3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 3173765013490779461}
+--- !u!50 &2690356794819472578
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6942797937593134201}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 2
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

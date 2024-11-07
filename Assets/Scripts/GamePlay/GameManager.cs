@@ -18,18 +18,6 @@ public class GameManager : MonoBehaviour
         {
             status = GameStatus.Playing;
         }
-
-        playerObject = new Player(); /*playerObject = new Health();*/ //new" creates a new instance of the "blueprint" code
-        enemyObject = new Enemy(10,5,1);
-
-        playerObject.Move();
-
-        enemyObject.Move();
-
-
-        playerObject.currentWeapon = new Weapon();
-        playerObject.Interact();
-
     }
 
     void Update()

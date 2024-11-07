@@ -1,6 +1,6 @@
 
 
-public class Weapon
+public abstract class Weapon
 {
     private float damage;
     private int ammo;
@@ -8,7 +8,7 @@ public class Weapon
     //private int currentAmmo;
     private float fireRate;
 
-    public void Shoot()
+    public virtual void Shoot()
     {
         if (HasAmmo())
         {
