@@ -17,7 +17,7 @@ public class Character : MonoBehaviour
 
     public virtual void Move(Vector2 direction)
     {
-        myRigidbody.AddForce(direction * Time.deltaTime * movementSpeed,ForceMode2D.Impulse);
+        myRigidbody.AddForce(direction * Time.deltaTime * movementSpeed, ForceMode2D.Impulse);
     }
 
     public virtual void Look(Vector2 direction)
