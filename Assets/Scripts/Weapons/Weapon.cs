@@ -1,35 +1,25 @@
-
+using UnityEngine;
 
 public abstract class Weapon
 {
+
     private float damage;
     private int ammo;
-    //private int maxAmmo;
-    //private int currentAmmo;
     private float fireRate;
 
-    public virtual void Shoot()
-    {
-        if (HasAmmo())
-        {
-            //shoot logic
-            ammo--;
+    protected Transform weaponTip;
 
-            //set bullet with damage
+    public abstract void Shoot();
 
-            //fireRate here to enable next shoot
-        }
-    }
-
-    public void Reload()
-    {
-
-    }
+    public abstract void Reload();
 
     public bool HasAmmo()
     {
         return ammo > 0;
     }
 
-
+    public Weapon(Transform tip)
+    {
+        weaponTip = tip;
+    }
 }

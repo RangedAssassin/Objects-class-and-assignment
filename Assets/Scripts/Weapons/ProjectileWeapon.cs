@@ -1,18 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
+
+
 using UnityEngine;
 
 public class ProjectileWeapon : Weapon
 {
-    // Start is called before the first frame update
-    void Start()
+    private GameObject projectilePrefab;
+
+    public ProjectileWeapon(Transform tip, GameObject bulletReferance) : base(tip)
     {
-        
+        projectilePrefab = bulletReferance;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Shoot()
     {
-        
+        GameObject.Instantiate(projectilePrefab, weaponTip.position, weaponTip.rotation);
+    }
+
+    public override void Reload()
+    {
+
     }
 }

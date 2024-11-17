@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class HitScanWeapon : Weapon
 {
-    //public override void Shoot()
-    //{
+    public HitScanWeapon(Transform tip) : base(tip)
+    {
+    }
 
-    //}
+    public override void Shoot()
+    {
+
+    }
+
+    public override void Reload()
+    {
+        
+    }
 }
