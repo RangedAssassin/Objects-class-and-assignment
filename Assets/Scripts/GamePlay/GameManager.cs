@@ -16,8 +16,8 @@ public class GameManager : MonoBehaviour
         else
             Destroy(gameObject);
 
-        StartCoroutine(SpawnWaveOfEnemies());
-        SpawnEnemy();
+        //StartCoroutine(SpawnWaveOfEnemies());
+        //SpawnEnemy();
     }
 
     private Enemy SpawnEnemy()
