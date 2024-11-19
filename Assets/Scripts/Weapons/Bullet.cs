@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D myrigidbody2d;
-    [SerializeField] private float bulletSpeed;
+    public float bulletSpeed;
 
 
     void Start()

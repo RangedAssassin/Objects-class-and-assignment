@@ -214,11 +214,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6542371091970499802, guid: 18c28149cacac0e4a9d26255954c556a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 6542371091970499802, guid: 18c28149cacac0e4a9d26255954c556a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.97
       objectReference: {fileID: 0}
     - target: {fileID: 6542371091970499802, guid: 18c28149cacac0e4a9d26255954c556a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -494,6 +494,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 255613241276061455, guid: 18c28149cacac0e4a9d26255954c556a, type: 3}
+    - {fileID: 7060992945933566032, guid: 18c28149cacac0e4a9d26255954c556a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1434368773008802071, guid: 18c28149cacac0e4a9d26255954c556a, type: 3}
@@ -506,9 +507,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2760733795831932424, guid: 18c28149cacac0e4a9d26255954c556a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4914100156917128523}
-    - targetCorrespondingSourceObject: {fileID: 2760733795831932424, guid: 18c28149cacac0e4a9d26255954c556a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3168190273672163612}
   m_SourcePrefab: {fileID: 100100000, guid: 18c28149cacac0e4a9d26255954c556a, type: 3}
 --- !u!4 &1963779801807299454 stripped
 Transform:
@@ -538,23 +536,6 @@ MonoBehaviour:
   attackCooldown: 0
   target: {fileID: 994367775709668364, guid: 79f07b38639269947a2bfdcf312d7820, type: 3}
   hasCollided: 0
---- !u!114 &3168190273672163612
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3384245513555510369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d41eed2be5e7ecd42aa2e541f8f9647e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myRigidbody: {fileID: 0}
-  movementSpeed: 10
-  distanceToStop: 0
-  attackCooldown: 0
-  target: {fileID: 0}
 --- !u!50 &7661207827858062765 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 7130687439273598916, guid: 18c28149cacac0e4a9d26255954c556a, type: 3}

@@ -86,14 +86,14 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2983743561072699171, guid: a26babb5c5afc9144aeed7199174c1fd, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 255613241276061455}
+      addedObject: {fileID: 7060992945933566032}
   m_SourcePrefab: {fileID: 100100000, guid: a26babb5c5afc9144aeed7199174c1fd, type: 3}
 --- !u!1 &2760733795831932424 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2983743561072699171, guid: a26babb5c5afc9144aeed7199174c1fd, type: 3}
   m_PrefabInstance: {fileID: 1096760887808786731}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &255613241276061455
+--- !u!114 &7060992945933566032
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,13 +105,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d41eed2be5e7ecd42aa2e541f8f9647e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myRigidbody: {fileID: 7130687439273598916}
+  myRigidbody: {fileID: 0}
   movementSpeed: 10
-  distanceToStop: 2.5
-  attackCooldown: 3
+  distanceToStop: 0
+  attackCooldown: 0
   target: {fileID: 0}
---- !u!50 &7130687439273598916 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 7912033194870611695, guid: a26babb5c5afc9144aeed7199174c1fd, type: 3}
-  m_PrefabInstance: {fileID: 1096760887808786731}
-  m_PrefabAsset: {fileID: 0}

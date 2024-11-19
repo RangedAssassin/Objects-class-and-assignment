@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class Enemy : Character
 {   
-    [SerializeField] private float distanceToStop;
-    [SerializeField] private float attackCooldown;
+    [SerializeField] protected float distanceToStop;
+    [SerializeField] protected float attackCooldown;
 
-    private float attackTimer;
+    [SerializeField] protected float attackTimer;
     [SerializeField] protected Player target;
 
     protected override void Start()
