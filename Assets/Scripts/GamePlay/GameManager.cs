@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Enemy enemyprefab;
     [SerializeField] private Transform[] spawnPointsArray;
     [SerializeField] private List<Enemy> listOfAllEnemiesAlive;
+
+    private ScoreManager scoreManager;
     void Start()
     {
         if (instance == null)
@@ -16,6 +19,8 @@ public class GameManager : MonoBehaviour
         else
             Destroy(gameObject);
 
+        scoreManager = GetComponent<ScoreManager>();
+        
         StartCoroutine(SpawnWaveOfEnemies());
         SpawnEnemy();
     }
@@ -33,7 +38,7 @@ public class GameManager : MonoBehaviour
 
     public void RemoveEnemyFromList(Enemy enemyToBeRemoved)
     {
-
+        scoreManager.IncreaseScore(ScoreType.EnemyKilled);
         listOfAllEnemiesAlive.Remove(enemyToBeRemoved);
 
 
@@ -50,20 +55,21 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator SpawnWaveOfEnemies()
     {
-
+        //Do Something Here
         while (true)
         {
-            if (listOfAllEnemiesAlive.Count < 20)//change number to spawn enemies until number is reached.
+            if (listOfAllEnemiesAlive.Count < 20)//Enemies are less than 20
             {
                 Enemy clone = SpawnEnemy();
                 //yield return new WaitForEndOfFrame();
                 //clone.healthValue.OnDied.AddListener(RemoveEnemyFromList);
             }
+            
             Debug.Log("start waiting for time");
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(Random.Range(1,4));
 
         }
-
+        //Do Something Else here after Wait
     }
 
 }

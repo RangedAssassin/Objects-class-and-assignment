@@ -53,6 +53,8 @@ public class Enemy : Character
 
     public override void PlayDeadEffect()
     {
+        //Another Solution without GameManager
+        //FindObjectOfType<ScoreManager>().IncreaseScore(ScoreType.EnemyKilled);
         GameManager.instance.RemoveEnemyFromList(this);
         base.PlayDeadEffect();  
     }

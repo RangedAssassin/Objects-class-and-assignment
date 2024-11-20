@@ -22,10 +22,13 @@ public class PlayerInput : MonoBehaviour
         direction.y = Input.GetAxis("Vertical");
         
         player.Move(direction);
+        
         //get position of mouse
         mousePosition = Input.mousePosition;
+        
         //offset position Z to account for -10 position of camera in calculation
         mousePosition.z = -Camera.main.transform.position.z;
+        
         //convert mouse position to world position
         Vector3 destination = Camera.main.ScreenToWorldPoint(mousePosition);
         lookDirection = destination - transform.position;   //Destination  minus  origin position
@@ -33,7 +36,13 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            player.currentWeapon.Shoot();
+            player.Attack();
+            //Start Shooting
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            //Stop shooting
         }
     }
 
