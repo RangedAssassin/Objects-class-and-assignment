@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float bulletSpeed;
 
     private float myDamage;
+    
     void Start()
     {
         myrigidbody2d.velocity = transform.up * bulletSpeed;

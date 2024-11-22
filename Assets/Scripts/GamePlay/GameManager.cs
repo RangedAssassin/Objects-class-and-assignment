@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.Events;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<Enemy> listOfAllEnemiesAlive;
 
     private ScoreManager scoreManager;
+
+    public UnityEvent OnGameStart;
+    public UnityEvent OnGameOver;
+
     void Start()
     {
         if (instance == null)
@@ -19,10 +24,20 @@ public class GameManager : MonoBehaviour
         else
             Destroy(gameObject);
 
+        listOfAllEnemiesAlive = new List<Enemy>();
+
         scoreManager = GetComponent<ScoreManager>();
+
+        FindObjectOfType<Player>().healthValue.OnDied.AddListener(GameOver);
         
         StartCoroutine(SpawnWaveOfEnemies());
         SpawnEnemy();
+    }
+
+    private void GameOver()
+    {
+        OnGameOver.Invoke();
+        StopAllCoroutines();
     }
 
     private Enemy SpawnEnemy()
@@ -70,6 +85,11 @@ public class GameManager : MonoBehaviour
 
         }
         //Do Something Else here after Wait
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene("GamePlay");
     }
 
 }

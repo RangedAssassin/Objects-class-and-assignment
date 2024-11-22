@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 public class Health
 {
+    public UnityEvent<float> OnHealthChanged;
     public UnityEvent OnDied;
     private float healthValue;
     private Character myCharacter;
@@ -11,6 +12,9 @@ public class Health
         healthValue -= damageParameter;
         
         Debug.Log("health decreasing to: " + healthValue);
+        
+        OnHealthChanged.Invoke(healthValue);
+        
         //update the ui
         //check if is dead
         if (IsDead())
@@ -23,11 +27,14 @@ public class Health
     public void IncreaseHealth(float increaseParameter)
     {
         healthValue += increaseParameter;
+        
+        OnHealthChanged.Invoke(healthValue);
     }
 
     
     public bool IsDead()
-    {   //return "returns" to where its called
+    {   
+        //return "returns" to where its called
         return healthValue <= 0;
     }
 
@@ -40,13 +47,14 @@ public class Health
     {
         healthValue = 100;
         OnDied = new UnityEvent();
+        OnHealthChanged = new UnityEvent<float>();
     }
 
     public Health(float initialHealth)
     {
         healthValue = initialHealth;
         OnDied = new UnityEvent();
-    
+        OnHealthChanged = new UnityEvent<float>();
     }
 
 

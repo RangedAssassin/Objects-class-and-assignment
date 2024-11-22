@@ -2,27 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pickup : MonoBehaviour
+public abstract class Pickup : MonoBehaviour
 {
-    [SerializeField] private Weapon pickup;
-    //[SerializeField] private float increaseHealthBy;
-
-    void Start()
-    {
-        
-    }
-
-
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.attachedRigidbody.CompareTag("Player"))
         {
-            collision.attachedRigidbody.GetComponent<Player>().currentWeapon = pickup; 
+            PickMeUp(collision.attachedRigidbody.GetComponent<Player>());
         }
     }
+
+    protected abstract void PickMeUp(Player playerInTrigger);
 }

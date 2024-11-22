@@ -107,7 +107,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myRigidbody: {fileID: 7130687439273598916}
   movementSpeed: 10
-  distanceToStop: 2.5
+  currentWeapon: {fileID: 0}
+  distanceToStop: 2
   attackCooldown: 3
   target: {fileID: 0}
 --- !u!50 &7130687439273598916 stripped
