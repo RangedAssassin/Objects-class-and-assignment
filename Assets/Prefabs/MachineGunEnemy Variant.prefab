@@ -138,7 +138,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8863455013852177107, guid: 18c28149cacac0e4a9d26255954c556a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.88
+      value: 1.061
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 255613241276061455, guid: 18c28149cacac0e4a9d26255954c556a, type: 3}
@@ -187,10 +187,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myRigidbody: {fileID: 2555763516001203350}
   movementSpeed: 10
+  currentWeapon: {fileID: 11400000, guid: 4655dbaaae6349244a11ae8e955ada95, type: 2}
   distanceToStop: 3
   attackCooldown: 1
+  attackTimer: 0
   target: {fileID: 994367775709668364, guid: 79f07b38639269947a2bfdcf312d7820, type: 3}
   bulletPrefab: {fileID: 6610112293185527131, guid: 568b567b2251a8e408bcf5dff48db879, type: 3}
   weaponTip: {fileID: 4216493285034281345}
-  fireRate: 5
   fireInterval: 1

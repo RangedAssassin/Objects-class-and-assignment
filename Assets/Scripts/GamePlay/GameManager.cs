@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    [SerializeField] private Enemy enemyprefab;
+    [SerializeField] private Enemy[] enemyprefabs;
     [SerializeField] private Transform[] spawnPointsArray;
     [SerializeField] private List<Enemy> listOfAllEnemiesAlive;
 
@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
         int randomIndex = Random.Range(0, spawnPointsArray.Length);
         Transform randomSpawnPoint = spawnPointsArray[randomIndex];
         
-        Enemy enemyClone = Instantiate(enemyprefab, randomSpawnPoint.position, randomSpawnPoint.rotation);
+        Enemy enemyClone = Instantiate(enemyprefabs[Random.Range(0,enemyprefabs.Length)], randomSpawnPoint.position, randomSpawnPoint.rotation);
         listOfAllEnemiesAlive.Add(enemyClone);
         return enemyClone;
         //enemyClone.healthValue.OnDied.AddListener(RemoveEnemyFromList);

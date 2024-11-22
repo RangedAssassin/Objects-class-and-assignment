@@ -17,7 +17,7 @@ public class ExplodingEnemy : Enemy
     public override void Attack()
     {
         Debug.Log("Ka-Boom i exploded");
-        target.healthValue.DecreasedHealth(3);
+        target.healthValue.DecreasedHealth(1);
         Destroy(gameObject);
 
     }

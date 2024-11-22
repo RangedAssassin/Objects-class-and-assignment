@@ -94,8 +94,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myRigidbody: {fileID: 446411378348179312}
   movementSpeed: 20
+  currentWeapon: {fileID: 0}
   playerWeaponTip: {fileID: 2198792814564776028}
-  bulletReferance: {fileID: 6610112293185527131, guid: 568b567b2251a8e408bcf5dff48db879, type: 3}
 --- !u!114 &6397858763546539122
 MonoBehaviour:
   m_ObjectHideFlags: 0

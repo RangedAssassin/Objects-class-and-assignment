@@ -5,7 +5,8 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D myrigidbody2d;
-    public float bulletSpeed;
+    [SerializeField] public float bulletSpeed;
+    [SerializeField] private string targetTag;
 
     private float myDamage;
     
@@ -27,7 +28,7 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.rigidbody.CompareTag("Enemy"))
+        if (collision.rigidbody.CompareTag(targetTag))
         {
             collision.rigidbody.GetComponent<Character>().healthValue.DecreasedHealth(myDamage);
         }
