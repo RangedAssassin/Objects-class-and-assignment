@@ -5,6 +5,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI healthText;
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI nukeCountText;
 
     private void Start()
     {
@@ -23,5 +24,11 @@ public class UIManager : MonoBehaviour
     public void UpdateHealthValue(float health) 
     {
         healthText.text = health.ToString();
+    }
+
+    public void UpdateNukeCount(int nukeCount)
+    {
+        nukeCountText.text += nukeCount.ToString();
+        Debug.Log("nuke count text update");
     }
 }

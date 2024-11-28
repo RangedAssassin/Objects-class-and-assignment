@@ -10,8 +10,9 @@ public class Character : MonoBehaviour
 
     protected virtual void Start()
     {
-        healthValue = new Health(1);
+        healthValue = new Health(10);
         healthValue.OnDied.AddListener(PlayDeadEffect);
+        
         
     }
 

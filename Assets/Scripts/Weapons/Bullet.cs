@@ -8,8 +8,15 @@ public class Bullet : MonoBehaviour
     [SerializeField] public float bulletSpeed;
     [SerializeField] private string targetTag;
 
-    private float myDamage;
-    
+    [SerializeField] private float myDamage;
+
+    private bool shouldRotate = false;
+    [SerializeField] private float rotationSpeed = 0f;
+    [SerializeField] private float acceleration = 0f;
+
+    //[SerializeField] private float clampMinSpeed = 2f;
+    //[SerializeField] private float clampMaxSpeed = 10f;
+
     void Start()
     {
         myrigidbody2d.velocity = transform.up * bulletSpeed;
@@ -23,7 +30,24 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
-        
+        if (shouldRotate == true)
+        {
+            transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime);
+
+
+            bulletSpeed += acceleration * Time.deltaTime;
+            //bulletSpeed = Mathf.Clamp(bulletSpeed, clampMinSpeed, clampMaxSpeed);
+
+            // Continuously move outward based on the updated rotation
+            Vector2 outwardDirection = transform.up;
+            myrigidbody2d.velocity = outwardDirection * bulletSpeed;
+        }
+    }
+
+    public void RotateBullet(bool enable)
+    {
+        shouldRotate = enable;
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

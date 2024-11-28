@@ -11,7 +11,7 @@ public class Health
     {
         healthValue -= damageParameter;
         
-        Debug.Log("health decreasing to: " + healthValue);
+        //Debug.Log("health decreasing to: " + healthValue);
         
         OnHealthChanged.Invoke(healthValue);
         

@@ -164,3 +164,4 @@ MonoBehaviour:
   myrigidbody2d: {fileID: 1166521244524046890}
   bulletSpeed: 6
   targetTag: Enemy
+  myDamage: 1

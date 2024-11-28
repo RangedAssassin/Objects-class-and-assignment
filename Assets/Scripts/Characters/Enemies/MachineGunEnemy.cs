@@ -1,90 +1,43 @@
-//using System.Collections;
-//using UnityEngine;
-
-//public class MachineGunEnemy : Enemy
-//{
-//    [SerializeField] private GameObject bulletPrefab;
-//    [SerializeField] private Transform weaponTip;
-//    [SerializeField] private float fireRate = 5f; // Default fire rate
-
-//    private Coroutine shootingCoroutine;
-
-//    protected override void Start()
-//    {
-//        base.Start();
-//        shootingCoroutine = StartCoroutine(ShootBullets()); // Start shooting
-//    }
-
-//    public override void Attack()
-//    {
-
-//        // Instantiate the bullet at the weapon tip's position and rotation
-//        Instantiate(bulletPrefab, weaponTip.position, weaponTip.rotation);
-//    }
-
-//    private IEnumerator ShootBullets()
-//    {
-//        float timer = 0f;
-//        float interval = 1f / fireRate; // Calculate interval between shots
-//        if (timer < interval)
-//        {
-//            Attack();
-//            yield return new WaitForSeconds(interval);
-//            timer = 0f;
-//        }
-//        else
-//        {
-//            timer += Time.deltaTime;
-
-//        }
-//    }
-
-//    private void OnDisable()
-//    {
-//        if (shootingCoroutine != null)
-//        {
-//            StopCoroutine(shootingCoroutine); // Stop shooting when the enemy is disabled
-//        }
-//    }
-//}
-
 using System.Collections;
 using UnityEngine;
 
-public class TimedShooterEnemy : Enemy
+public class MachineGunEnemy : Enemy
 {
     [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private Transform weaponTip;
-    [SerializeField] private float fireInterval = 5f; // Shoots every 5 seconds
-
-    private Coroutine shootingCoroutine;
+    [SerializeField] private Transform[] weaponTip;
 
     protected override void Start()
     {
         base.Start();
-        shootingCoroutine = StartCoroutine(ShootBullets()); // Start the shooting routine
+        InvokeRepeating("Attack", 1f, 1f);
+    }
+
+    protected override void Update()
+    {
+        if (!target) return;
+
+        Vector2 destination = target.transform.position;
+        Vector2 currentPosition = transform.position;
+        Vector2 directionClass = destination - currentPosition;
+        if (Vector2.Distance(destination, currentPosition) > distanceToStop)
+        {
+            Move(directionClass.normalized);
+        }
+
+        Look(directionClass.normalized);
     }
 
     public override void Attack()
     {
-        // Instantiate a bullet at the weapon tip's position and rotation
-        Instantiate(bulletPrefab, weaponTip.position, weaponTip.rotation);
-    }
-
-    private IEnumerator ShootBullets()
-    {
-        while (true)
+        foreach (Transform firepoint in weaponTip)
         {
-            Attack(); // Shoot a bullet
-            yield return new WaitForSeconds(fireInterval); // Wait for the fire interval
-        }
-    }
-
-    private void OnDisable()
-    {
-        if (shootingCoroutine != null)
-        {
-            StopCoroutine(shootingCoroutine); // Stop shooting when the enemy is disabled
+            // Instantiate bullet
+            GameObject bullet = Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
+            Bullet bulletScript = bullet.GetComponent<Bullet>();
+            if (bulletScript != null)
+            {
+                bulletScript.RotateBullet(true);
+            }
         }
     }
 }

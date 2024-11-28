@@ -4,6 +4,7 @@ using static UnityEngine.GraphicsBuffer;
 public class ExplodingEnemy : Enemy
 {
     [SerializeField] private bool hasCollided = false;
+    [SerializeField] private float explosionDamage = 1f;
 
     protected override void Update()
     {
@@ -17,7 +18,7 @@ public class ExplodingEnemy : Enemy
     public override void Attack()
     {
         Debug.Log("Ka-Boom i exploded");
-        target.healthValue.DecreasedHealth(1);
+        target.healthValue.DecreasedHealth(explosionDamage);
         Destroy(gameObject);
 
     }

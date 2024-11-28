@@ -8,6 +8,9 @@ public class Enemy : Character
     [SerializeField] protected float attackTimer;
     [SerializeField] protected Player target;
 
+    [SerializeField] protected GameObject[] pickups;
+    private float dropChance = 0.25f;
+
     protected override void Start()
     {   
         base.Start();
@@ -56,6 +59,16 @@ public class Enemy : Character
         //Another Solution without GameManager
         //FindObjectOfType<ScoreManager>().IncreaseScore(ScoreType.EnemyKilled);
         GameManager.instance.RemoveEnemyFromList(this);
+        DropPickup();
         base.PlayDeadEffect();  
+    }
+
+    public void DropPickup()
+    {
+        if (Random.value <= dropChance)
+        {
+            int randomIndex = Random.Range(0, pickups.Length);
+            Instantiate(pickups[randomIndex], transform.position, transform.rotation);
+        }
     }
 }

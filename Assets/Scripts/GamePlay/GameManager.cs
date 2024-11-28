@@ -13,9 +13,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<Enemy> listOfAllEnemiesAlive;
 
     private ScoreManager scoreManager;
+    private UIManager uiManager;
 
     public UnityEvent OnGameStart;
     public UnityEvent OnGameOver;
+
+    private int nukeCount;
 
     void Start()
     {
@@ -73,14 +76,14 @@ public class GameManager : MonoBehaviour
         //Do Something Here
         while (true)
         {
-            if (listOfAllEnemiesAlive.Count < 20)//Enemies are less than 20
+            if (listOfAllEnemiesAlive.Count < 5)//Enemies are less than 20
             {
                 Enemy clone = SpawnEnemy();
                 //yield return new WaitForEndOfFrame();
                 //clone.healthValue.OnDied.AddListener(RemoveEnemyFromList);
             }
             
-            Debug.Log("start waiting for time");
+            //Debug.Log("start waiting for time");
             yield return new WaitForSeconds(Random.Range(1,4));
 
         }
@@ -92,4 +95,10 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("GamePlay");
     }
 
+    public void IncreaseNukeCount()
+    {
+        nukeCount++;
+        uiManager.UpdateNukeCount(nukeCount);
+        Debug.Log("nuke count is: " + nukeCount);
+    }
 }

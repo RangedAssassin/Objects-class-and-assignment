@@ -162,5 +162,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myrigidbody2d: {fileID: 1166521244524046890}
-  bulletSpeed: 6
+  bulletSpeed: 5
   targetTag: Player
+  myDamage: 1
+  rotationSpeed: 50
+  acceleration: 0.5
