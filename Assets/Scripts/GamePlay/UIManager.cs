@@ -28,7 +28,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateNukeCount(int nukeCount)
     {
-        nukeCountText.text += nukeCount.ToString();
-        Debug.Log("nuke count text update");
+        nukeCountText.text = nukeCount.ToString();
+        //Debug.Log("nuke count text update");
     }
 }

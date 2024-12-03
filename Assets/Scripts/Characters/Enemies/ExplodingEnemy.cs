@@ -5,6 +5,7 @@ public class ExplodingEnemy : Enemy
 {
     [SerializeField] private bool hasCollided = false;
     [SerializeField] private float explosionDamage = 1f;
+    [SerializeField] private GameObject detonateEffect;
 
     protected override void Update()
     {
@@ -17,8 +18,10 @@ public class ExplodingEnemy : Enemy
 
     public override void Attack()
     {
-        Debug.Log("Ka-Boom i exploded");
+        Instantiate(detonateEffect,transform.position,transform.rotation);
+        SoundManager.instance.PlaySound(explosionClip);
         target.healthValue.DecreasedHealth(explosionDamage);
+        gameManager.RemoveEnemyFromList(this);
         Destroy(gameObject);
 
     }
@@ -27,7 +30,7 @@ public class ExplodingEnemy : Enemy
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Triggered");
+            //Debug.Log("Triggered");
             hasCollided = true;
         }
     }

@@ -6,9 +6,9 @@ public class MachineGunEnemy : Enemy
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform[] weaponTip;
 
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
         InvokeRepeating("Attack", 1f, 1f);
     }
 

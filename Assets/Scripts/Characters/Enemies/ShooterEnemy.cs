@@ -13,9 +13,9 @@ public class ShooterEnemy : Enemy
     private bool isLineDrawn = false;
     
 
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
         lineRenderer.enabled = false;
 
     }

@@ -1,10 +1,15 @@
 
 
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
     [SerializeField] private Character player;
+    [SerializeField] private GameManager gameManager;
+    [SerializeField] private GameObject nukeEffect;
+    [SerializeField] private AudioClip laserShootingSound;
+
 
     //For debug only
     public Vector2 direction;
@@ -12,7 +17,9 @@ public class PlayerInput : MonoBehaviour
     public Vector3 lookDirection;
     void Start()
     {
-        
+        gameManager = FindObjectOfType<GameManager>();
+
+
     }
 
     // Update is called once per frame
@@ -37,12 +44,15 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             player.Attack();
+            SoundManager.instance.PlaySound(laserShootingSound);
             //Start Shooting
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonDown(1))
         {
-            //Stop shooting
+            
+            gameManager.UseNuke();
+            Instantiate(nukeEffect, transform.position, transform.rotation);
         }
     }
 

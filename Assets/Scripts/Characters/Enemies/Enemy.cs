@@ -7,15 +7,16 @@ public class Enemy : Character
 
     [SerializeField] protected float attackTimer;
     [SerializeField] protected Player target;
+    [SerializeField] protected GameManager gameManager;
 
     [SerializeField] protected GameObject[] pickups;
     private float dropChance = 0.25f;
 
-    protected override void Start()
+    protected override void Awake()
     {   
-        base.Start();
+        base.Awake();
         target = GameObject.FindObjectOfType<Player>();
-    
+        gameManager = GameObject.FindObjectOfType<GameManager>();
     }
 
     protected virtual void Update()
@@ -44,6 +45,7 @@ public class Enemy : Character
         
         if (attackTimer >= attackCooldown)
         {
+            //Debug.Log("Attacking!");
             target.healthValue.DecreasedHealth(1);
             attackTimer = 0;
         }
@@ -68,7 +70,7 @@ public class Enemy : Character
         if (Random.value <= dropChance)
         {
             int randomIndex = Random.Range(0, pickups.Length);
-            Instantiate(pickups[randomIndex], transform.position, transform.rotation);
+            Instantiate(pickups[randomIndex], transform.position, Quaternion.identity);
         }
     }
 }

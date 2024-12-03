@@ -4,11 +4,13 @@ public class Character : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D myRigidbody;
     [SerializeField] private float movementSpeed = 10f;
+    [SerializeField] protected AudioClip explosionClip;
+    [SerializeField] private GameObject dieEffect;
 
     public Health healthValue;
     public Weapon currentWeapon;
 
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         healthValue = new Health(10);
         healthValue.OnDied.AddListener(PlayDeadEffect);
@@ -30,6 +32,8 @@ public class Character : MonoBehaviour
 
     public virtual void PlayDeadEffect()
     {
+        Instantiate(dieEffect, transform.position,transform.rotation);
+        SoundManager.instance.PlaySound(explosionClip);
         Destroy(gameObject);
     }
 
@@ -40,7 +44,8 @@ public class Character : MonoBehaviour
 
     public virtual void Attack()
     {
-        Debug.Log("Punching");
+        /*Debug.Log("Punching")*/;
+        
     }
 
 }

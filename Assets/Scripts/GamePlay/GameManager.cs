@@ -13,12 +13,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<Enemy> listOfAllEnemiesAlive;
 
     private ScoreManager scoreManager;
-    private UIManager uiManager;
+    [SerializeField] private UIManager uiManager;
 
     public UnityEvent OnGameStart;
     public UnityEvent OnGameOver;
 
     private int nukeCount;
+ 
 
     void Start()
     {
@@ -30,7 +31,17 @@ public class GameManager : MonoBehaviour
         listOfAllEnemiesAlive = new List<Enemy>();
 
         scoreManager = GetComponent<ScoreManager>();
-
+        //--------------------------------------------
+        Player player = FindObjectOfType<Player>();
+        if (player != null && player.healthValue != null)
+        {
+            player.healthValue.OnDied.AddListener(GameOver);
+        }
+        else
+        {
+            Debug.LogError("Player or healthValue is null.");
+        }
+        //----------------------------------------------
         FindObjectOfType<Player>().healthValue.OnDied.AddListener(GameOver);
         
         StartCoroutine(SpawnWaveOfEnemies());
@@ -99,6 +110,53 @@ public class GameManager : MonoBehaviour
     {
         nukeCount++;
         uiManager.UpdateNukeCount(nukeCount);
-        Debug.Log("nuke count is: " + nukeCount);
+       
+    }
+    public void DestroyAllEnemiesOnList()
+    {
+        for (int i = listOfAllEnemiesAlive.Count - 1; i >= 0; i--)
+        {
+            Enemy enemy = listOfAllEnemiesAlive[i];
+            if (enemy != null)
+            {
+                scoreManager.IncreaseScore(ScoreType.EnemyKilled);
+                enemy.DropPickup();
+                enemy.PlayDeadEffect();
+                Destroy(enemy.gameObject);
+            }
+        }
+
+        listOfAllEnemiesAlive.Clear();
+    }
+
+
+    //public void DestroyAllEnemiesOnList()
+    //{
+    //    foreach (Enemy enemy in listOfAllEnemiesAlive)
+    //    {
+    //        if (enemy != null)
+    //        {
+    //            scoreManager.IncreaseScore(ScoreType.EnemyKilled);
+    //            enemy.DropPickup();
+    //            enemy.PlayDeadEffect();
+    //            Destroy(enemy.gameObject);
+    //        }
+    //    }
+        
+    //}
+
+    public void UseNuke()
+    {
+        if (nukeCount >= 1f)
+        {
+            nukeCount--;
+            uiManager.UpdateNukeCount(nukeCount);
+
+            DestroyAllEnemiesOnList();
+            listOfAllEnemiesAlive.Clear();
+
+
+        }
+
     }
 }
