@@ -93,16 +93,19 @@ MonoBehaviour:
   movementSpeed: 10
   explosionClip: {fileID: 8300000, guid: 07e2e5a14fd4b234e8c55af995b44e25, type: 3}
   dieEffect: {fileID: 8194992990867289339, guid: 99bc28c0d45f51c4fbac01080b73edc7, type: 3}
+  characterHealth: 0
   currentWeapon: {fileID: 11400000, guid: 4655dbaaae6349244a11ae8e955ada95, type: 2}
   distanceToStop: 0
   attackCooldown: 0
   attackTimer: 0
   target: {fileID: 994367775709668364, guid: 79f07b38639269947a2bfdcf312d7820, type: 3}
   gameManager: {fileID: 0}
+  enemyShootSound: {fileID: 0}
   pickups:
   - {fileID: 4391639481336536080, guid: 5f5eaadf3da30254094ee77ab236489b, type: 3}
   - {fileID: 2188815697253417140, guid: 47429bca0279a134d8aacdb378d165ba, type: 3}
   - {fileID: 2458394637882444854, guid: 25fe5d556d1cfe946b79795c397cdbbf, type: 3}
+  dropChance: 25
 --- !u!50 &8846579756476279846 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 7912033194870611695, guid: a26babb5c5afc9144aeed7199174c1fd, type: 3}

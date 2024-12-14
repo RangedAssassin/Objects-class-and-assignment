@@ -8,9 +8,11 @@ public class Enemy : Character
     [SerializeField] protected float attackTimer;
     [SerializeField] protected Player target;
     [SerializeField] protected GameManager gameManager;
+    [SerializeField] protected AudioClip enemyShootSound;
 
     [SerializeField] protected GameObject[] pickups;
-    private float dropChance = 0.25f;
+    [SerializeField][Range(0, 100)] public float dropChance = 100f;
+
 
     protected override void Awake()
     {   
@@ -67,10 +69,11 @@ public class Enemy : Character
 
     public void DropPickup()
     {
-        if (Random.value <= dropChance)
+        if (Random.Range(0f, 100f) <= dropChance)
         {
             int randomIndex = Random.Range(0, pickups.Length);
             Instantiate(pickups[randomIndex], transform.position, Quaternion.identity);
         }
     }
+
 }

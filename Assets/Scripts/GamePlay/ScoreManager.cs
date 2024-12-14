@@ -1,11 +1,12 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
+    [SerializeField] TextMeshProUGUI highestScoreText;
+
     public UnityEvent<int> OnScoreChanged;
     public UnityEvent<int> OnScoreRemoved;
 
@@ -22,10 +23,13 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] private ScoreData latestScore;
     private void Start()
     {
+
         Player playerObject = FindObjectOfType<Player>();
         playerObject.healthValue.OnDied.AddListener(RegisterScore);
         
         highestScore = PlayerPrefs.GetInt("HighScore");
+        highestScoreText.text = highestScore.ToString();
+
 
         //At the start of the game
         //I'll retrieve the string from player prefs
@@ -33,10 +37,7 @@ public class ScoreManager : MonoBehaviour
 
         //and try to convert it back into a ScoreData object/class
         latestScore = JsonUtility.FromJson<ScoreData>(latestScoreInJson);
-
-
     }
-
     private void RegisterScore() //when players dies
     {
         //Create an object filled with information
@@ -57,7 +58,6 @@ public class ScoreManager : MonoBehaviour
             //PlayerPrefs.SetInt("My Name", "Pat");
         }
     }
-
     public void IncreaseScore(ScoreType action)
     {
         switch (action)
@@ -77,14 +77,10 @@ public class ScoreManager : MonoBehaviour
         }
         OnScoreChanged.Invoke(totalScore);
     }
-
-
-
     public void EnemyKilled()
     {
         //IncreaseScore(scorePerEnemy);
     }
-
     public void CoinCollected()
     {
         //IncreaseScore(scorePerCoin);

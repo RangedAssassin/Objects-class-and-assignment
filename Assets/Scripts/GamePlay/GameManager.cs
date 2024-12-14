@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -11,6 +12,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Enemy[] enemyprefabs;
     [SerializeField] private Transform[] spawnPointsArray;
     [SerializeField] private List<Enemy> listOfAllEnemiesAlive;
+    [SerializeField] private AudioClip nukeExplosion;
+    [SerializeField] private AudioClip noNukes;
+    [SerializeField] private GameObject nukeEffect;
+    [SerializeField] private float spawnAmount;
 
     private ScoreManager scoreManager;
     [SerializeField] private UIManager uiManager;
@@ -19,7 +24,9 @@ public class GameManager : MonoBehaviour
     public UnityEvent OnGameOver;
 
     private int nukeCount;
- 
+    private int maxNukes = 3;
+
+    public int NukeCount { get => nukeCount; private set => nukeCount = value; }
 
     void Start()
     {
@@ -69,25 +76,14 @@ public class GameManager : MonoBehaviour
     {
         scoreManager.IncreaseScore(ScoreType.EnemyKilled);
         listOfAllEnemiesAlive.Remove(enemyToBeRemoved);
-
-
-        //for (int index = 0; index < listOfAllEnemiesAlive.Count; index++)
-        //{
-        //    if (listOfAllEnemiesAlive[index] == null)
-        //    {
-        //        listOfAllEnemiesAlive.RemoveAt(index);
-        //    }
-        //    //code here
-        //}
     }
-
 
     private IEnumerator SpawnWaveOfEnemies()
     {
         //Do Something Here
         while (true)
         {
-            if (listOfAllEnemiesAlive.Count < 5)//Enemies are less than 20
+            if (listOfAllEnemiesAlive.Count < spawnAmount)//Enemies are less than 20
             {
                 Enemy clone = SpawnEnemy();
                 //yield return new WaitForEndOfFrame();
@@ -108,9 +104,9 @@ public class GameManager : MonoBehaviour
 
     public void IncreaseNukeCount()
     {
-        nukeCount++;
-        uiManager.UpdateNukeCount(nukeCount);
-       
+            nukeCount++;
+            nukeCount = Mathf.Clamp(nukeCount, 0, maxNukes);
+            uiManager.UpdateNukeCount(nukeCount);
     }
     public void DestroyAllEnemiesOnList()
     {
@@ -129,34 +125,25 @@ public class GameManager : MonoBehaviour
         listOfAllEnemiesAlive.Clear();
     }
 
-
-    //public void DestroyAllEnemiesOnList()
-    //{
-    //    foreach (Enemy enemy in listOfAllEnemiesAlive)
-    //    {
-    //        if (enemy != null)
-    //        {
-    //            scoreManager.IncreaseScore(ScoreType.EnemyKilled);
-    //            enemy.DropPickup();
-    //            enemy.PlayDeadEffect();
-    //            Destroy(enemy.gameObject);
-    //        }
-    //    }
-        
-    //}
-
-    public void UseNuke()
+    public void UseNuke(Character player)
     {
         if (nukeCount >= 1f)
         {
             nukeCount--;
             uiManager.UpdateNukeCount(nukeCount);
-
+            SoundManager.instance.PlaySound(nukeExplosion);
+            Instantiate(nukeEffect, player.transform.position, player.transform.rotation);
             DestroyAllEnemiesOnList();
             listOfAllEnemiesAlive.Clear();
-
-
         }
+        else if (nukeCount == 0)
+        {
+            SoundManager.instance.PlaySound(noNukes);
+        }
+    }
 
+    public void OnMainMenuReturnClicked()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }

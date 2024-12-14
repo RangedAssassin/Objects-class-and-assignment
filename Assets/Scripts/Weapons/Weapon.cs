@@ -7,6 +7,8 @@ public abstract class Weapon : ScriptableObject
     [SerializeField] protected int ammo;
     [SerializeField] protected float fireRate;
 
+    public abstract void StartShooting(Transform weaponTip);
+    public abstract void StopShooting();
     public abstract void Shoot(Transform weaponTip);
 
     public abstract void Reload();

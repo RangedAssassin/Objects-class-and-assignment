@@ -1,18 +1,23 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 public class Health
 {
+    [SerializeField] private Slider healthSlider;
     public UnityEvent<float> OnHealthChanged;
     public UnityEvent OnDied;
     private float healthValue;
+    private float maxHealth = 100f;
     private Character myCharacter;
     
+    void Start()
+    {
+        healthSlider.GetComponent<Slider>().value = healthValue;    
+    }
     public void DecreasedHealth(float damageParameter)
     {
-        healthValue -= damageParameter;
-        
-        //Debug.Log("health decreasing to: " + healthValue);
-        
+        healthValue -= damageParameter;       
         OnHealthChanged.Invoke(healthValue);
         
         //update the ui
@@ -27,7 +32,7 @@ public class Health
     public void IncreaseHealth(float increaseParameter)
     {
         healthValue += increaseParameter;
-        
+        healthValue = Mathf.Clamp(healthValue,0f,maxHealth);
         OnHealthChanged.Invoke(healthValue);
     }
 
@@ -40,6 +45,7 @@ public class Health
 
     public float GetHealthValue()
     {
+
         return healthValue;
     }
 

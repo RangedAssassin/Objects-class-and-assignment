@@ -492,19 +492,22 @@ MonoBehaviour:
   myRigidbody: {fileID: 6176226396192673798}
   movementSpeed: 15
   explosionClip: {fileID: 8300000, guid: dce0fc50c98b24282867ddc791aa869d, type: 3}
-  dieEffect: {fileID: 8194992990867289339, guid: 99bc28c0d45f51c4fbac01080b73edc7, type: 3}
+  dieEffect: {fileID: 2504214343621411470, guid: 3ed0d324122d7b24eaec75c55c74aafc, type: 3}
+  characterHealth: 20
   currentWeapon: {fileID: 11400000, guid: 4655dbaaae6349244a11ae8e955ada95, type: 2}
   distanceToStop: 0.5
   attackCooldown: 0
   attackTimer: 0
   target: {fileID: 994367775709668364, guid: 79f07b38639269947a2bfdcf312d7820, type: 3}
   gameManager: {fileID: 0}
+  enemyShootSound: {fileID: 0}
   pickups:
   - {fileID: 4391639481336536080, guid: 5f5eaadf3da30254094ee77ab236489b, type: 3}
   - {fileID: 2188815697253417140, guid: 47429bca0279a134d8aacdb378d165ba, type: 3}
   - {fileID: 2458394637882444854, guid: 25fe5d556d1cfe946b79795c397cdbbf, type: 3}
+  dropChance: 25
   hasCollided: 0
-  explosionDamage: 5
+  explosionDamage: 10
   detonateEffect: {fileID: 2433282508537954060, guid: 3ef3ae421f71c5c4e97fe12dc2fc6312, type: 3}
 --- !u!50 &6176226396192673798 stripped
 Rigidbody2D:

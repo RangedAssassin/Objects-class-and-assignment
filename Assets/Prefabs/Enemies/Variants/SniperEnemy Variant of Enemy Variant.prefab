@@ -604,18 +604,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myRigidbody: {fileID: 641810476486755769}
   movementSpeed: 10
-  explosionClip: {fileID: 8300000, guid: 88030e95f6e09c74b81a88f256d4330c, type: 3}
+  explosionClip: {fileID: 8300000, guid: dce0fc50c98b24282867ddc791aa869d, type: 3}
   dieEffect: {fileID: 2504214343621411470, guid: 3ed0d324122d7b24eaec75c55c74aafc, type: 3}
+  characterHealth: 10
   currentWeapon: {fileID: 11400000, guid: 4655dbaaae6349244a11ae8e955ada95, type: 2}
   distanceToStop: 10
   attackCooldown: 5
   attackTimer: 0
   target: {fileID: 994367775709668364, guid: 79f07b38639269947a2bfdcf312d7820, type: 3}
   gameManager: {fileID: 0}
+  enemyShootSound: {fileID: 8300000, guid: a421c88e31c06c24791fbcc9cd18a8db, type: 3}
   pickups:
   - {fileID: 4391639481336536080, guid: 5f5eaadf3da30254094ee77ab236489b, type: 3}
   - {fileID: 2188815697253417140, guid: 47429bca0279a134d8aacdb378d165ba, type: 3}
   - {fileID: 2458394637882444854, guid: 25fe5d556d1cfe946b79795c397cdbbf, type: 3}
+  dropChance: 25
   bulletPrefab: {fileID: 6610112293185527131, guid: abd9cda8701125c45b090be0e303a051, type: 3}
   weaponTip: {fileID: 1232913276177774766}
   lineRenderer: {fileID: 8785996661513331151}

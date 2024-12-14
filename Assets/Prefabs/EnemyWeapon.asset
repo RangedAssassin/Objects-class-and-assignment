@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 108960a9907ad7447ad83771322f034c, type: 3}
+  m_Name: EnemyWeapon
+  m_EditorClassIdentifier: 
+  damage: 1
+  ammo: 0
+  fireRate: 10
+  projectilePrefab: {fileID: 4244200615688304989, guid: abd9cda8701125c45b090be0e303a051, type: 3}
+  laserShootingSound: {fileID: 8300000, guid: 16c25250151e04a37b489a3f056c8314, type: 3}
+  isShooting: 0

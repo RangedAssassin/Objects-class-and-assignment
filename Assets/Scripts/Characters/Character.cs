@@ -6,13 +6,14 @@ public class Character : MonoBehaviour
     [SerializeField] private float movementSpeed = 10f;
     [SerializeField] protected AudioClip explosionClip;
     [SerializeField] private GameObject dieEffect;
+    [SerializeField] private float characterHealth;
 
     public Health healthValue;
     public Weapon currentWeapon;
 
     protected virtual void Awake()
     {
-        healthValue = new Health(10);
+        healthValue = new Health(characterHealth);
         healthValue.OnDied.AddListener(PlayDeadEffect);
         
         
@@ -41,11 +42,21 @@ public class Character : MonoBehaviour
     {
         //Debug.Log(GameManager.timer);
     }
+    public virtual void StartAttack()
+    {
+        //as i press the mouse button
+    }
 
     public virtual void Attack()
     {
         /*Debug.Log("Punching")*/;
         
+    }
+
+
+    public virtual void StopAttack()
+    { 
+    //as i release the mouse button
     }
 
 }

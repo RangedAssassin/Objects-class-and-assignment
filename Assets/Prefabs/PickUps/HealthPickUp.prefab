@@ -179,6 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f1de04c29e37f4fafd0fe6821efb96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupSound: {fileID: 8300000, guid: 1705df466e01a9b49ac546cad6a75123, type: 3}
   healthPointsToAdd: 10
 --- !u!95 &5369581290844002239
 Animator:

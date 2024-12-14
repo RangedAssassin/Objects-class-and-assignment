@@ -32,6 +32,7 @@ public class MachineGunEnemy : Enemy
         foreach (Transform firepoint in weaponTip)
         {
             // Instantiate bullet
+            SoundManager.instance.PlaySound(enemyShootSound);
             GameObject bullet = Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
             Bullet bulletScript = bullet.GetComponent<Bullet>();
             if (bulletScript != null)
