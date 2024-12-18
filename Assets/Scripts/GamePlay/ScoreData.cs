@@ -8,9 +8,9 @@ public class ScoreData
     public int highestScore;
 
 
-    public ScoreData(string userNameParameter, int highestScoreParameter)
+    public ScoreData(string playerInitials, int highestScoreParameter)
     {
-        userName = userNameParameter;
-        highestScore = highestScoreParameter;
+        this.userName = playerInitials;
+        this.highestScore = highestScoreParameter;
     }
 }

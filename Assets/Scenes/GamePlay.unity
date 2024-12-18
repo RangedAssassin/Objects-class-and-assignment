@@ -800,6 +800,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highestScoreText: {fileID: 168305001}
+  playerInitialsText: {fileID: 1458493108}
+  highestInitialsText: {fileID: 1418269431}
   OnScoreChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -808,12 +810,13 @@ MonoBehaviour:
       m_Calls: []
   totalScore: 0
   highestScore: 0
+  highScoreInitials: 
   scorePerEnemy: 1
   scorePerCoin: 10
   scoreForPowerUp: 20
   allScores: []
   latestScore:
-    userName: WPM
+    userName: 
     highestScore: 0
 --- !u!114 &657616404
 MonoBehaviour:
@@ -1504,6 +1507,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1418269431 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8829565588212613543, guid: 00643e133ba3cb0448af7c2bb002765f, type: 3}
+  m_PrefabInstance: {fileID: 6734065409300609219}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1427900668
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1566,6 +1580,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2364929934546443232, guid: a95654636fa0d5c4b8c448e07451b6f6, type: 3}
   m_PrefabInstance: {fileID: 1427900668}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1458493108 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4562874151927446781, guid: 00643e133ba3cb0448af7c2bb002765f, type: 3}
+  m_PrefabInstance: {fileID: 6734065409300609219}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1569631856
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2055,6 +2080,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 576715607622594041, guid: 19a7f529f5a402c428f624fcbfe0789c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3475447337505922472, guid: 19a7f529f5a402c428f624fcbfe0789c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7682315190551154956, guid: 19a7f529f5a402c428f624fcbfe0789c, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8397060064602483666, guid: 19a7f529f5a402c428f624fcbfe0789c, type: 3}

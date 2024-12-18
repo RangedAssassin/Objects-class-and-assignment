@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,8 +12,16 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject StartScreen;
     [SerializeField] private GameObject InstructionsScreen;
 
+    [SerializeField] private TextMeshProUGUI playerIniOutput;
+    [SerializeField] private TMP_InputField playersInitials;
+
+ 
+
     public void OnStartButtonClicked()
     {
+        string initialsToTransfer = playersInitials.text;
+        PlayerPrefs.SetString("playerInitials",initialsToTransfer);
+        PlayerPrefs.Save();
         SceneManager.LoadScene("GamePlay");
     }
 

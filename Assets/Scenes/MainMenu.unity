@@ -673,6 +673,7 @@ MonoBehaviour:
   startScreenReturnButton: {fileID: 1499484004}
   StartScreen: {fileID: 139892783}
   InstructionsScreen: {fileID: 1402377773}
+  playersInitials: {fileID: 847840711}
 --- !u!4 &260921631
 Transform:
   m_ObjectHideFlags: 0
@@ -1986,7 +1987,7 @@ MonoBehaviour:
   m_CharacterValidation: 0
   m_RegexValue: 
   m_GlobalPointSize: 14
-  m_CharacterLimit: 0
+  m_CharacterLimit: 3
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls: []
