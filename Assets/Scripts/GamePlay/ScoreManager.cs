@@ -90,6 +90,9 @@ public class ScoreManager : MonoBehaviour
             
             highestScore = totalScore;
             highScoreInitials = playerInitials;
+
+            highestScoreText.text = highestScore.ToString();
+            highestInitialsText.text = highScoreInitials;
             
             PlayerPrefs.SetInt(HighScoreKey, highestScore);
             PlayerPrefs.SetString(HighScoreInitialsKey, highScoreInitials);
