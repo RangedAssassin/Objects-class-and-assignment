@@ -847,7 +847,12 @@ MonoBehaviour:
   nukeExplosion: {fileID: 8300000, guid: d1f2477ca0d094c828b805f8745c21be, type: 3}
   noNukes: {fileID: 8300000, guid: 16458abe8d5a64f7a8082f0de46d643f, type: 3}
   nukeEffect: {fileID: 7177991128484655659, guid: 59a35ab9f68edff40b6e5332bed330f5, type: 3}
-  spawnAmount: 20
+  initialWaveSize: 2
+  waveDelay: 5
+  currentWave: 1
+  onWaveComplete:
+    m_PersistentCalls:
+      m_Calls: []
   uiManager: {fileID: 1104401612}
   OnGameStart:
     m_PersistentCalls:
@@ -879,6 +884,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  nukeCount: 0
 --- !u!1 &699201215
 GameObject:
   m_ObjectHideFlags: 0
