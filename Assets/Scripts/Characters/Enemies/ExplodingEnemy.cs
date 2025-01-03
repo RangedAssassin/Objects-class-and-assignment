@@ -22,6 +22,7 @@ public class ExplodingEnemy : Enemy
         SoundManager.instance.PlaySound(explosionClip);
         target.healthValue.DecreasedHealth(explosionDamage);
         gameManager.RemoveEnemyFromList(this);
+        OnEnemyDeath.Invoke();//NEW
         Destroy(gameObject);
 
     }

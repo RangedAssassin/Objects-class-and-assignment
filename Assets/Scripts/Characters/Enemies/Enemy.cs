@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Enemy : Character
 {   
@@ -12,6 +13,8 @@ public class Enemy : Character
 
     [SerializeField] protected GameObject[] pickups;
     [SerializeField][Range(0, 100)] public float dropChance = 100f;
+
+    public UnityEvent OnEnemyDeath;
 
 
     protected override void Awake()
@@ -62,6 +65,7 @@ public class Enemy : Character
     {
         //Another Solution without GameManager
         //FindObjectOfType<ScoreManager>().IncreaseScore(ScoreType.EnemyKilled);
+        OnEnemyDeath.Invoke();//NEW
         GameManager.instance.RemoveEnemyFromList(this);
         DropPickup();
         base.PlayDeadEffect();  

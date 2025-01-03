@@ -14,19 +14,27 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioClip nukeExplosion;
     [SerializeField] private AudioClip noNukes;
     [SerializeField] private GameObject nukeEffect;
-    [SerializeField] private float spawnAmount;
+
+
+    [SerializeField] private int initialWaveSize = 4;
+    [SerializeField] private float waveDelay = 2f;
+    [SerializeField] private int currentWave = 1;
+    
+    public UnityEvent onWaveComplete;
 
     private ScoreManager scoreManager;
+    
     [SerializeField] private UIManager uiManager;
 
     public UnityEvent OnGameStart;
     public UnityEvent OnGameOver;
 
-    private int nukeCount;
+    [SerializeField] private int nukeCount;
     private int maxNukes = 3;
 
     public int NukeCount { get => nukeCount; private set => nukeCount = value; }
 
+    private bool isSpawningWave = false;
     void Start()
     {
         if (instance == null)
@@ -49,9 +57,17 @@ public class GameManager : MonoBehaviour
         }
         //----------------------------------------------
         FindObjectOfType<Player>().healthValue.OnDied.AddListener(GameOver);
-        
-        StartCoroutine(SpawnWaveOfEnemies());
-        SpawnEnemy();
+
+        SpawnWaveOfEnemies();
+    }
+
+    private void Update()
+    {
+        if (!isSpawningWave && listOfAllEnemiesAlive.Count == 0)
+        {
+            onWaveComplete.Invoke();
+            StartCoroutine("SpawnNextWave");
+        }
     }
 
     private void GameOver()
@@ -60,40 +76,40 @@ public class GameManager : MonoBehaviour
         StopAllCoroutines();
     }
 
-    private Enemy SpawnEnemy()
+    private void SpawnWaveOfEnemies()
     {
-        int randomIndex = Random.Range(0, spawnPointsArray.Length);
-        Transform randomSpawnPoint = spawnPointsArray[randomIndex];
-        
-        Enemy enemyClone = Instantiate(enemyprefabs[Random.Range(0,enemyprefabs.Length)], randomSpawnPoint.position, randomSpawnPoint.rotation);
-        listOfAllEnemiesAlive.Add(enemyClone);
-        return enemyClone;
-        //enemyClone.healthValue.OnDied.AddListener(RemoveEnemyFromList);
+        int enemiesToSpawn = initialWaveSize + (currentWave - 1);
+
+        for (int i = 0; i < enemiesToSpawn; i++)
+        { 
+            int randomIndex = Random.Range(0, spawnPointsArray.Length);
+            Transform randomSpawnPoint = spawnPointsArray[randomIndex];
+
+            Enemy enemyClone = Instantiate(enemyprefabs[Random.Range(0, enemyprefabs.Length)], randomSpawnPoint.position, randomSpawnPoint.rotation);
+            listOfAllEnemiesAlive.Add(enemyClone);
+
+            enemyClone.OnEnemyDeath.AddListener(() => RemoveEnemyFromList(enemyClone));
+        }
+
+        currentWave++;
     }
 
     public void RemoveEnemyFromList(Enemy enemyToBeRemoved)
     {
-        scoreManager.IncreaseScore(ScoreType.EnemyKilled);
-        listOfAllEnemiesAlive.Remove(enemyToBeRemoved);
+        if (listOfAllEnemiesAlive.Contains(enemyToBeRemoved))
+        {
+            scoreManager.IncreaseScore(ScoreType.EnemyKilled);
+            listOfAllEnemiesAlive.Remove(enemyToBeRemoved);
+        }
     }
 
-    private IEnumerator SpawnWaveOfEnemies()
+    private IEnumerator SpawnNextWave()
     {
-        //Do Something Here
-        while (true)
-        {
-            if (listOfAllEnemiesAlive.Count < spawnAmount)//Enemies are less than 20
-            {
-                Enemy clone = SpawnEnemy();
-                //yield return new WaitForEndOfFrame();
-                //clone.healthValue.OnDied.AddListener(RemoveEnemyFromList);
-            }
-            
-            //Debug.Log("start waiting for time");
-            yield return new WaitForSeconds(Random.Range(1,4));
+        isSpawningWave = true;
+        yield return new WaitForSeconds(waveDelay);
 
-        }
-        //Do Something Else here after Wait
+        SpawnWaveOfEnemies();
+        isSpawningWave= false;
     }
 
     public void RestartGame()
@@ -109,20 +125,20 @@ public class GameManager : MonoBehaviour
     }
     public void DestroyAllEnemiesOnList()
     {
+        // Iterate backward through the list to avoid issues when removing items
         for (int i = listOfAllEnemiesAlive.Count - 1; i >= 0; i--)
         {
             Enemy enemy = listOfAllEnemiesAlive[i];
             if (enemy != null)
             {
-                scoreManager.IncreaseScore(ScoreType.EnemyKilled);
-                enemy.DropPickup();
-                enemy.PlayDeadEffect();
-                Destroy(enemy.gameObject);
+                enemy.PlayDeadEffect(); // Properly invoke the death logic
             }
         }
 
-        listOfAllEnemiesAlive.Clear();
+        listOfAllEnemiesAlive.Clear(); // Clear the list after all enemies are processed
     }
+
+
 
     public void UseNuke(Character player)
     {
@@ -133,9 +149,8 @@ public class GameManager : MonoBehaviour
             SoundManager.instance.PlaySound(nukeExplosion);
             Instantiate(nukeEffect, player.transform.position, player.transform.rotation);
             DestroyAllEnemiesOnList();
-            listOfAllEnemiesAlive.Clear();
         }
-        else if (nukeCount == 0)
+        else
         {
             SoundManager.instance.PlaySound(noNukes);
         }
