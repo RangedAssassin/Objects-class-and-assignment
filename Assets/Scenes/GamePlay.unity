@@ -861,7 +861,7 @@ MonoBehaviour:
   initialWaveSize: 1
   waveDelay: 5
   currentWave: 1
-  maxEnemiesPerWave: 30
+  maxEnemiesPerWave: 40
   spawnRadius: 2.5
   minSpawnDistance: 1
   proximitySpawns: 1
@@ -899,7 +899,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-  nukeCount: 3
+  nukeCount: 0
 --- !u!1 &699201215
 GameObject:
   m_ObjectHideFlags: 0
@@ -1998,10 +1998,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameOverScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 2170672902897596229, guid: 00643e133ba3cb0448af7c2bb002765f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4313731770755156607, guid: 00643e133ba3cb0448af7c2bb002765f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 657616404}
+    - target: {fileID: 5177523238844282989, guid: 00643e133ba3cb0448af7c2bb002765f, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 494.8087
+      objectReference: {fileID: 0}
+    - target: {fileID: 5177523238844282989, guid: 00643e133ba3cb0448af7c2bb002765f, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 46.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5177523238844282989, guid: 00643e133ba3cb0448af7c2bb002765f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -364.48376
+      objectReference: {fileID: 0}
+    - target: {fileID: 5177523238844282989, guid: 00643e133ba3cb0448af7c2bb002765f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -67.100006
+      objectReference: {fileID: 0}
     - target: {fileID: 5506164289803213112, guid: 00643e133ba3cb0448af7c2bb002765f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2085,6 +2105,10 @@ PrefabInstance:
     - target: {fileID: 6406490723160394528, guid: 00643e133ba3cb0448af7c2bb002765f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9131816121845088779, guid: 00643e133ba3cb0448af7c2bb002765f, type: 3}
+      propertyPath: m_text
+      value: 'Highest Initials: '
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
