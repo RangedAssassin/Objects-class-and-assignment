@@ -221,6 +221,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &227205760 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 218107977923318218, guid: 19a7f529f5a402c428f624fcbfe0789c, type: 3}
+  m_PrefabInstance: {fileID: 8487925290441377684}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &279427966 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2170672902897596229, guid: 00643e133ba3cb0448af7c2bb002765f, type: 3}
@@ -666,7 +677,7 @@ Transform:
   m_GameObject: {fileID: 615223754}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1255.3411, y: 699.4872, z: -9.456767}
+  m_LocalPosition: {x: 1255.3411, y: 638.4872, z: -9.456767}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -847,9 +858,13 @@ MonoBehaviour:
   nukeExplosion: {fileID: 8300000, guid: d1f2477ca0d094c828b805f8745c21be, type: 3}
   noNukes: {fileID: 8300000, guid: 16458abe8d5a64f7a8082f0de46d643f, type: 3}
   nukeEffect: {fileID: 7177991128484655659, guid: 59a35ab9f68edff40b6e5332bed330f5, type: 3}
-  initialWaveSize: 2
+  initialWaveSize: 1
   waveDelay: 5
   currentWave: 1
+  maxEnemiesPerWave: 30
+  spawnRadius: 2.5
+  minSpawnDistance: 1
+  proximitySpawns: 1
   onWaveComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -884,7 +899,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-  nukeCount: 0
+  nukeCount: 3
 --- !u!1 &699201215
 GameObject:
   m_ObjectHideFlags: 0
@@ -1031,6 +1046,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2364929934546443232, guid: a95654636fa0d5c4b8c448e07451b6f6, type: 3}
   m_PrefabInstance: {fileID: 714851701}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &861827164 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3643671922440695500, guid: 19a7f529f5a402c428f624fcbfe0789c, type: 3}
+  m_PrefabInstance: {fileID: 8487925290441377684}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &877361522 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4560410215353114197, guid: 79f07b38639269947a2bfdcf312d7820, type: 3}
@@ -1340,11 +1366,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthText: {fileID: 1401092451}
-  LatestScoreText: {fileID: 2047269368}
   healthSlider: {fileID: 547835078}
+  LatestScoreText: {fileID: 2047269368}
   scoreText: {fileID: 1950687524}
   nukeCountText: {fileID: 1194961074}
   nukeCountSlider: {fileID: 2049415319}
+  currentWaveText: {fileID: 861827164}
+  nextWaveText: {fileID: 2051545843}
+  enemiesLeftText: {fileID: 227205760}
+  waveInfo: {fileID: 1822844849}
 --- !u!114 &1104401613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1782,12 +1812,17 @@ Transform:
   m_GameObject: {fileID: 1745998883}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1257.5887, y: 705.11066, z: 4.652658}
+  m_LocalPosition: {x: 1257.5887, y: 644.11066, z: 4.652658}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1822844849 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3035708951683664790, guid: 19a7f529f5a402c428f624fcbfe0789c, type: 3}
+  m_PrefabInstance: {fileID: 8487925290441377684}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1950687524 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2823403519677673993, guid: 19a7f529f5a402c428f624fcbfe0789c, type: 3}
@@ -1819,6 +1854,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2051545843 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3277172184097947055, guid: 19a7f529f5a402c428f624fcbfe0789c, type: 3}
+  m_PrefabInstance: {fileID: 8487925290441377684}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &2099036502
@@ -1952,10 +1998,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameOverScreen
       objectReference: {fileID: 0}
-    - target: {fileID: 2170672902897596229, guid: 00643e133ba3cb0448af7c2bb002765f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4313731770755156607, guid: 00643e133ba3cb0448af7c2bb002765f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2057,6 +2099,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1104401616}
     m_Modifications:
+    - target: {fileID: 218107977923318218, guid: 19a7f529f5a402c428f624fcbfe0789c, type: 3}
+      propertyPath: m_text
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 576715607622594041, guid: 19a7f529f5a402c428f624fcbfe0789c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2135,6 +2181,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 576715607622594041, guid: 19a7f529f5a402c428f624fcbfe0789c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3035708951683664790, guid: 19a7f529f5a402c428f624fcbfe0789c, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3475447337505922472, guid: 19a7f529f5a402c428f624fcbfe0789c, type: 3}
